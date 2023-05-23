@@ -1,0 +1,16 @@
+{
+    "affection"     : ["love", "caring", "gratitude", "admiration"],
+    "anticipation"  : ["excitement", "optimism"],
+    "anxious"       : ["fear", "nervousness"],
+    "confusion"     : ["confusion"],
+    "curiosity"     : ["curiosity"],
+    "delight"       : ["amusement", "joy"],
+    "desire"        : ["desire"],
+    "frustration"   : ["anger", "annoyance"],
+    "melancholy"    : ["grief", "remorse", "sadness"],
+    "mortification" : ["disappointment", "disgust", "disapproval", "embarrassment"],
+    "neutral"       : ["neutral"],
+    "relief"        : ["relief"],
+    "respect"       : ["pride", "approval"],
+    "revelation"    : ["surprise", "realization"]
+}

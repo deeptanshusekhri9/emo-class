@@ -1,0 +1,14 @@
+NLP Coursework Individual submission: Deeptanshu Sekhri
+
+The 4 experiments are split into 2 different iPython notebooks. 
+They are expected to work independently although with some code overlap.
+
+Although this is not desirable, but we had to do it due to their size and heavy JavaScript visualisations(which can overload the system its being run upon).
+
+The code is split as below:
+
+Experiment 1&2: go_emo_exp_1_2.ipynb
+Experiment 3&4: go_emo_exp_3_4.ipynb
+
+
+Please install the required python libraries from requirements.txt(pip using conda recommended) 

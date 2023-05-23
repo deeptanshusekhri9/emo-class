@@ -1,0 +1,14 @@
+affection
+anticipation
+anxious
+confusion
+curiosity
+delight
+desire
+frustration
+melancholy
+mortification
+relief
+respect
+revelation
+neutral

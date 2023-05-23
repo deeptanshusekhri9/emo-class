@@ -1,0 +1,10 @@
+plotly==5.14.1
+colorcet==3.0.1
+squarify==0.4.3
+kaleido==0.2.1
+wordcloud==1.8.2.2
+bert-tensorflow==1.0.4
+bert==2.2.0
+tokenization==1.0.7
+sentencepiece==0.1.98
+tensorflow-hub==0.13.0
