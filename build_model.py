@@ -3,7 +3,6 @@ import os
 import tensorflow as tf
 from bert import tokenization
 import argparse
-from model import bert_encode
 
 module_url = "https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/1"
 bert_layer = hub.KerasLayer(module_url, trainable=True)
@@ -13,16 +12,13 @@ do_lower_case = bert_layer.resolved_object.do_lower_case.numpy()
 tokenizer = tokenization.FullTokenizer(vocab_file, do_lower_case)
 
 def processor_model(model):
-  @tf.function(input_signature=[tf.TensorSpec(shape=(), dtype=tf.string)])
-  def emotional(text):
-     global tokenizer
-     print(type(text))
-     #text = tf.strings.(text)
-     #text = text.decode("utf-8")
-     #TODO: fix encoder input text
-     predict_input = bert_encode("my test", tokenizer, max_len=100)
-     prediction = model(predict_input)
-     #prediction = model(text)
+  @tf.function(input_signature=[{
+        "input_word_ids": tf.TensorSpec((None, 100), tf.int32, name="input_word_ids"),
+        "input_mask": tf.TensorSpec((None, 100), tf.int32, name="input_mask"),
+        "segment_ids": tf.TensorSpec((None, 100), tf.int32, name="segment_ids"),
+  }])
+  def emotional(inputs):
+     prediction = model(inputs)
      labels=['affection','anticipation','anxious','confusion','curiosity','delight','desire',
              'frustration','melancholy','mortification','relief','respect','revelation','neutral']
      indices = tf.argmax(prediction, axis=-1)  # Index with highest prediction
