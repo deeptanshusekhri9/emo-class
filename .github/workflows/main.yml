@@ -16,7 +16,7 @@ jobs:
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@main
       with:
-        project_id: your_project_id
+        project_id: nlp-p-387612
         service_account_key: ${{ secrets.GCP_CREDENTIALS }}
         export_default_credentials: true
 
