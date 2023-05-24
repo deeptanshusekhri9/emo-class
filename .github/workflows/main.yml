@@ -49,4 +49,3 @@ jobs:
         docker cp models/deploy serving_base:/models/deploy
         docker commit --change "ENV MODEL_NAME deploy" serving_base new_name
         docker tag new_name europe-west1-docker.pkg.dev/nlp-p-387612/emotion/new_name
-        docker push europe-west1-docker.pkg.dev/nlp-p-387612/emotion/new_name
