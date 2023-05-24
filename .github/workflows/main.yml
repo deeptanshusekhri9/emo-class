@@ -26,7 +26,6 @@ jobs:
 
     - name: set GCP account
       run: |
-        gcloud config set account deepaksingh26113@gmail.com
         gcloud auth login
         
     - name: Set up Google Cloud SDK
