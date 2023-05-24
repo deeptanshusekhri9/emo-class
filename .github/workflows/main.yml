@@ -40,7 +40,6 @@ jobs:
       uses: google-github-actions/setup-gcloud@v1
       with:
         project_id: nlp-p-387612
-        service_account_email: ${{ secrets.SA_EMAIL }} 
         service_account_key: ${{ secrets.GCP_CREDENTIALS }}
         export_default_credentials: true
 
