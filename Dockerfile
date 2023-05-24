@@ -1,8 +1,11 @@
-# Container image that runs your code
-FROM alpine:3.10
+FROM gcr.io/google-appengine/python
 
-# Copies your code file from your action repository to the filesystem path `/` of the container
-COPY entrypoint.sh /entrypoint.sh
+# Set up any additional dependencies or configurations here
 
-# Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/entrypoint.sh"]
+WORKDIR /app
+
+# Copy your TensorFlow code into the container
+COPY . /app
+
+# Set the entry point for your TensorFlow script
+ENTRYPOINT ["python", "build_model.py"]
