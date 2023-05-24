@@ -1,0 +1,32 @@
+runs:
+  using: "composite"
+  steps:
+      - name: Download the latest SavedModel release
+        uses: robinraju/release-downloader@v1.3
+        with:
+          repository: $MODEL_RELEASE_REPO
+          fileName: $MODEL_RELEASE_FILE
+
+          latest: true
+          
+      - name: Extract the SavedModel
+        run: |
+          mkdir $MODEL_NAME
+          tar -xvf $MODEL_RELEASE_FILE --strip-components=1 --directory $MODEL_NAME
+    
+      - name: Run the CPU Optimized TensorFlow Serving container
+        run: |
+          docker run -d --name serving_base $BASE_IMAGE_TAG
+          
+      - name: Copy the SavedModel to the running TensorFlow Serving container
+        run: |
+          docker cp $MODEL_NAME serving_base:/models/$MODEL_NAME
+          
+      - id: push-to-registry
+        name: Commit and push the changed running TensorFlow Serving image
+        run: |
+          export NEW_IMAGE_NAME=tfserving-$MODEL_NAME:latest
+          export NEW_IMAGE_TAG=gcr.io/$GCP_PROJECT_ID/$NEW_IMAGE_NAME
+          echo "::set-output name=NEW_IMAGE_TAG::$(echo $NEW_IMAGE_TAG)"
+          docker commit --change "ENV MODEL_NAME $MODEL_NAME" serving_base $NEW_IMAGE_TAG
+          docker push $NEW_IMAGE_TAG
