@@ -35,12 +35,12 @@ jobs:
       with:
         workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
         service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
-      
+          
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
 
     - name: Configure Docker
       run: |
-        echo "${{ secrets.GCP_CREDENTIALS }}" | base64 --decode > ${HOME}/gcp-key.json
-        gcloud auth activate-service-account --key-file=${HOME}/gcp-key.json
         gcloud auth configure-docker
 
     - name: Build and tag Docker image
