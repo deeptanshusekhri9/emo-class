@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    
+      
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -46,7 +46,7 @@ jobs:
     - name: Build and tag Docker image
       run: |
         docker run -d --name serving_base tensorflow/serving
-        docker cp emo-class/models/deploy serving_base:/models/deploy
+        docker cp models/deploy serving_base:/models/deploy
         docker commit --change "ENV MODEL_NAME deploy" serving_base new_name
         docker tag new_name europe-west1-docker.pkg.dev/nlp-p-387612/emotion/new_name
         docker push europe-west1-docker.pkg.dev/nlp-p-387612/emotion/new_name
