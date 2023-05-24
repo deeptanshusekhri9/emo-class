@@ -23,6 +23,8 @@ jobs:
       with:
         workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
         service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+      run: |
+        gcloud config set account deepaksingh26113@gmail.com
 
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
