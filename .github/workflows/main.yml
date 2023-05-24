@@ -39,7 +39,7 @@ jobs:
 
     - name: Configure Docker
       run: |
-        echo ${{ secrets.GCP_CREDENTIALS }} | base64 --decode > ${HOME}/gcp-key.json
+        echo "${{ secrets.GCP_CREDENTIALS }}" | base64 --decode > ${HOME}/gcp-key.json
         gcloud auth activate-service-account --key-file=${HOME}/gcp-key.json
         gcloud auth configure-docker
 
